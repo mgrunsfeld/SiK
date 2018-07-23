@@ -1,0 +1,971 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.5.0 #9253 (Mar 24 2016) (Linux)
+                                      4 ; This file was generated Mon Jul 23 11:34:32 2018
+                                      5 ;--------------------------------------------------------
+                                      6 	.module mavlink
+                                      7 	.optsdcc -mmcs51 --model-large
+                                      8 	
+                                      9 ;--------------------------------------------------------
+                                     10 ; Public variables in this module
+                                     11 ;--------------------------------------------------------
+                                     12 	.globl _serial_read_space
+                                     13 	.globl _serial_write_space
+                                     14 	.globl _serial_write_buf
+                                     15 	.globl _SDN
+                                     16 	.globl _NSS1
+                                     17 	.globl _IRQ
+                                     18 	.globl _PIN_ENABLE
+                                     19 	.globl _PIN_CONFIG
+                                     20 	.globl _LED_GREEN
+                                     21 	.globl _LED_RED
+                                     22 	.globl _SPI0EN
+                                     23 	.globl _TXBMT0
+                                     24 	.globl _NSS0MD0
+                                     25 	.globl _NSS0MD1
+                                     26 	.globl _RXOVRN0
+                                     27 	.globl _MODF0
+                                     28 	.globl _WCOL0
+                                     29 	.globl _SPIF0
+                                     30 	.globl _AD0CM0
+                                     31 	.globl _AD0CM1
+                                     32 	.globl _AD0CM2
+                                     33 	.globl _AD0WINT
+                                     34 	.globl _AD0BUSY
+                                     35 	.globl _AD0INT
+                                     36 	.globl _BURSTEN
+                                     37 	.globl _AD0EN
+                                     38 	.globl _CCF0
+                                     39 	.globl _CCF1
+                                     40 	.globl _CCF2
+                                     41 	.globl _CCF3
+                                     42 	.globl _CCF4
+                                     43 	.globl _CCF5
+                                     44 	.globl _CR
+                                     45 	.globl _CF
+                                     46 	.globl _P
+                                     47 	.globl _F1
+                                     48 	.globl _OV
+                                     49 	.globl _RS0
+                                     50 	.globl _RS1
+                                     51 	.globl _F0
+                                     52 	.globl _AC
+                                     53 	.globl _CY
+                                     54 	.globl _T2XCLK
+                                     55 	.globl _T2RCLK
+                                     56 	.globl _TR2
+                                     57 	.globl _T2SPLIT
+                                     58 	.globl _TF2CEN
+                                     59 	.globl _TF2LEN
+                                     60 	.globl _TF2L
+                                     61 	.globl _TF2H
+                                     62 	.globl _SI
+                                     63 	.globl _ACK
+                                     64 	.globl _ARBLOST
+                                     65 	.globl _ACKRQ
+                                     66 	.globl _STO
+                                     67 	.globl _STA
+                                     68 	.globl _TXMODE
+                                     69 	.globl _MASTER
+                                     70 	.globl _PX0
+                                     71 	.globl _PT0
+                                     72 	.globl _PX1
+                                     73 	.globl _PT1
+                                     74 	.globl _PS0
+                                     75 	.globl _PT2
+                                     76 	.globl _PSPI0
+                                     77 	.globl _SPI1EN
+                                     78 	.globl _TXBMT1
+                                     79 	.globl _NSS1MD0
+                                     80 	.globl _NSS1MD1
+                                     81 	.globl _RXOVRN1
+                                     82 	.globl _MODF1
+                                     83 	.globl _WCOL1
+                                     84 	.globl _SPIF1
+                                     85 	.globl _EX0
+                                     86 	.globl _ET0
+                                     87 	.globl _EX1
+                                     88 	.globl _ET1
+                                     89 	.globl _ES0
+                                     90 	.globl _ET2
+                                     91 	.globl _ESPI0
+                                     92 	.globl _EA
+                                     93 	.globl _RI0
+                                     94 	.globl _TI0
+                                     95 	.globl _RB80
+                                     96 	.globl _TB80
+                                     97 	.globl _REN0
+                                     98 	.globl _MCE0
+                                     99 	.globl _S0MODE
+                                    100 	.globl _CRC0VAL
+                                    101 	.globl _CRC0INIT
+                                    102 	.globl _CRC0SEL
+                                    103 	.globl _IT0
+                                    104 	.globl _IE0
+                                    105 	.globl _IT1
+                                    106 	.globl _IE1
+                                    107 	.globl _TR0
+                                    108 	.globl _TF0
+                                    109 	.globl _TR1
+                                    110 	.globl _TF1
+                                    111 	.globl _PCA0CP4
+                                    112 	.globl _PCA0CP0
+                                    113 	.globl _PCA0
+                                    114 	.globl _PCA0CP3
+                                    115 	.globl _PCA0CP2
+                                    116 	.globl _PCA0CP1
+                                    117 	.globl _PCA0CP5
+                                    118 	.globl _TMR2
+                                    119 	.globl _TMR2RL
+                                    120 	.globl _ADC0LT
+                                    121 	.globl _ADC0GT
+                                    122 	.globl _ADC0
+                                    123 	.globl _TMR3
+                                    124 	.globl _TMR3RL
+                                    125 	.globl _TOFF
+                                    126 	.globl _DP
+                                    127 	.globl _VDM0CN
+                                    128 	.globl _PCA0CPH4
+                                    129 	.globl _PCA0CPL4
+                                    130 	.globl _PCA0CPH0
+                                    131 	.globl _PCA0CPL0
+                                    132 	.globl _PCA0H
+                                    133 	.globl _PCA0L
+                                    134 	.globl _SPI0CN
+                                    135 	.globl _EIP2
+                                    136 	.globl _EIP1
+                                    137 	.globl _SMB0ADM
+                                    138 	.globl _SMB0ADR
+                                    139 	.globl _P2MDIN
+                                    140 	.globl _P1MDIN
+                                    141 	.globl _P0MDIN
+                                    142 	.globl _B
+                                    143 	.globl _RSTSRC
+                                    144 	.globl _PCA0CPH3
+                                    145 	.globl _PCA0CPL3
+                                    146 	.globl _PCA0CPH2
+                                    147 	.globl _PCA0CPL2
+                                    148 	.globl _PCA0CPH1
+                                    149 	.globl _PCA0CPL1
+                                    150 	.globl _ADC0CN
+                                    151 	.globl _EIE2
+                                    152 	.globl _EIE1
+                                    153 	.globl _FLWR
+                                    154 	.globl _IT01CF
+                                    155 	.globl _XBR2
+                                    156 	.globl _XBR1
+                                    157 	.globl _XBR0
+                                    158 	.globl _ACC
+                                    159 	.globl _PCA0PWM
+                                    160 	.globl _PCA0CPM4
+                                    161 	.globl _PCA0CPM3
+                                    162 	.globl _PCA0CPM2
+                                    163 	.globl _PCA0CPM1
+                                    164 	.globl _PCA0CPM0
+                                    165 	.globl _PCA0MD
+                                    166 	.globl _PCA0CN
+                                    167 	.globl _P0MAT
+                                    168 	.globl _P2SKIP
+                                    169 	.globl _P1SKIP
+                                    170 	.globl _P0SKIP
+                                    171 	.globl _PCA0CPH5
+                                    172 	.globl _PCA0CPL5
+                                    173 	.globl _REF0CN
+                                    174 	.globl _PSW
+                                    175 	.globl _P1MAT
+                                    176 	.globl _PCA0CPM5
+                                    177 	.globl _TMR2H
+                                    178 	.globl _TMR2L
+                                    179 	.globl _TMR2RLH
+                                    180 	.globl _TMR2RLL
+                                    181 	.globl _REG0CN
+                                    182 	.globl _TMR2CN
+                                    183 	.globl _P0MASK
+                                    184 	.globl _ADC0LTH
+                                    185 	.globl _ADC0LTL
+                                    186 	.globl _ADC0GTH
+                                    187 	.globl _ADC0GTL
+                                    188 	.globl _SMB0DAT
+                                    189 	.globl _SMB0CF
+                                    190 	.globl _SMB0CN
+                                    191 	.globl _P1MASK
+                                    192 	.globl _ADC0H
+                                    193 	.globl _ADC0L
+                                    194 	.globl _ADC0TK
+                                    195 	.globl _ADC0CF
+                                    196 	.globl _ADC0MX
+                                    197 	.globl _ADC0PWR
+                                    198 	.globl _ADC0AC
+                                    199 	.globl _IREF0CN
+                                    200 	.globl _IP
+                                    201 	.globl _FLKEY
+                                    202 	.globl _FLSCL
+                                    203 	.globl _PMU0CF
+                                    204 	.globl _OSCICL
+                                    205 	.globl _OSCICN
+                                    206 	.globl _OSCXCN
+                                    207 	.globl _SPI1CN
+                                    208 	.globl _ONESHOT
+                                    209 	.globl _EMI0TC
+                                    210 	.globl _RTC0KEY
+                                    211 	.globl _RTC0DAT
+                                    212 	.globl _RTC0ADR
+                                    213 	.globl _EMI0CF
+                                    214 	.globl _EMI0CN
+                                    215 	.globl _CLKSEL
+                                    216 	.globl _IE
+                                    217 	.globl _SFRPAGE
+                                    218 	.globl _P2DRV
+                                    219 	.globl _P2MDOUT
+                                    220 	.globl _P1DRV
+                                    221 	.globl _P1MDOUT
+                                    222 	.globl _P0DRV
+                                    223 	.globl _P0MDOUT
+                                    224 	.globl _SPI0DAT
+                                    225 	.globl _SPI0CKR
+                                    226 	.globl _SPI0CFG
+                                    227 	.globl _P2
+                                    228 	.globl _CPT0MX
+                                    229 	.globl _CPT1MX
+                                    230 	.globl _CPT0MD
+                                    231 	.globl _CPT1MD
+                                    232 	.globl _CPT0CN
+                                    233 	.globl _CPT1CN
+                                    234 	.globl _SBUF0
+                                    235 	.globl _SCON0
+                                    236 	.globl _CRC0CNT
+                                    237 	.globl _DC0CN
+                                    238 	.globl _CRC0AUTO
+                                    239 	.globl _DC0CF
+                                    240 	.globl _TMR3H
+                                    241 	.globl _CRC0FLIP
+                                    242 	.globl _TMR3L
+                                    243 	.globl _CRC0IN
+                                    244 	.globl _TMR3RLH
+                                    245 	.globl _CRC0CN
+                                    246 	.globl _TMR3RLL
+                                    247 	.globl _CRC0DAT
+                                    248 	.globl _TMR3CN
+                                    249 	.globl _P1
+                                    250 	.globl _PSCTL
+                                    251 	.globl _CKCON
+                                    252 	.globl _TH1
+                                    253 	.globl _TH0
+                                    254 	.globl _TL1
+                                    255 	.globl _TL0
+                                    256 	.globl _TMOD
+                                    257 	.globl _TCON
+                                    258 	.globl _PCON
+                                    259 	.globl _TOFFH
+                                    260 	.globl _SPI1DAT
+                                    261 	.globl _TOFFL
+                                    262 	.globl _SPI1CKR
+                                    263 	.globl _SPI1CFG
+                                    264 	.globl _DPH
+                                    265 	.globl _DPL
+                                    266 	.globl _SP
+                                    267 	.globl _P0
+                                    268 	.globl _MAVLink_report
+                                    269 ;--------------------------------------------------------
+                                    270 ; special function registers
+                                    271 ;--------------------------------------------------------
+                                    272 	.area RSEG    (ABS,DATA)
+      000000                        273 	.org 0x0000
+                           000080   274 _P0	=	0x0080
+                           000081   275 _SP	=	0x0081
+                           000082   276 _DPL	=	0x0082
+                           000083   277 _DPH	=	0x0083
+                           000084   278 _SPI1CFG	=	0x0084
+                           000085   279 _SPI1CKR	=	0x0085
+                           000085   280 _TOFFL	=	0x0085
+                           000086   281 _SPI1DAT	=	0x0086
+                           000086   282 _TOFFH	=	0x0086
+                           000087   283 _PCON	=	0x0087
+                           000088   284 _TCON	=	0x0088
+                           000089   285 _TMOD	=	0x0089
+                           00008A   286 _TL0	=	0x008a
+                           00008B   287 _TL1	=	0x008b
+                           00008C   288 _TH0	=	0x008c
+                           00008D   289 _TH1	=	0x008d
+                           00008E   290 _CKCON	=	0x008e
+                           00008F   291 _PSCTL	=	0x008f
+                           000090   292 _P1	=	0x0090
+                           000091   293 _TMR3CN	=	0x0091
+                           000091   294 _CRC0DAT	=	0x0091
+                           000092   295 _TMR3RLL	=	0x0092
+                           000092   296 _CRC0CN	=	0x0092
+                           000093   297 _TMR3RLH	=	0x0093
+                           000093   298 _CRC0IN	=	0x0093
+                           000094   299 _TMR3L	=	0x0094
+                           000095   300 _CRC0FLIP	=	0x0095
+                           000095   301 _TMR3H	=	0x0095
+                           000096   302 _DC0CF	=	0x0096
+                           000096   303 _CRC0AUTO	=	0x0096
+                           000097   304 _DC0CN	=	0x0097
+                           000097   305 _CRC0CNT	=	0x0097
+                           000098   306 _SCON0	=	0x0098
+                           000099   307 _SBUF0	=	0x0099
+                           00009A   308 _CPT1CN	=	0x009a
+                           00009B   309 _CPT0CN	=	0x009b
+                           00009C   310 _CPT1MD	=	0x009c
+                           00009D   311 _CPT0MD	=	0x009d
+                           00009E   312 _CPT1MX	=	0x009e
+                           00009F   313 _CPT0MX	=	0x009f
+                           0000A0   314 _P2	=	0x00a0
+                           0000A1   315 _SPI0CFG	=	0x00a1
+                           0000A2   316 _SPI0CKR	=	0x00a2
+                           0000A3   317 _SPI0DAT	=	0x00a3
+                           0000A4   318 _P0MDOUT	=	0x00a4
+                           0000A4   319 _P0DRV	=	0x00a4
+                           0000A5   320 _P1MDOUT	=	0x00a5
+                           0000A5   321 _P1DRV	=	0x00a5
+                           0000A6   322 _P2MDOUT	=	0x00a6
+                           0000A6   323 _P2DRV	=	0x00a6
+                           0000A7   324 _SFRPAGE	=	0x00a7
+                           0000A8   325 _IE	=	0x00a8
+                           0000A9   326 _CLKSEL	=	0x00a9
+                           0000AA   327 _EMI0CN	=	0x00aa
+                           0000AB   328 _EMI0CF	=	0x00ab
+                           0000AC   329 _RTC0ADR	=	0x00ac
+                           0000AD   330 _RTC0DAT	=	0x00ad
+                           0000AE   331 _RTC0KEY	=	0x00ae
+                           0000AF   332 _EMI0TC	=	0x00af
+                           0000AF   333 _ONESHOT	=	0x00af
+                           0000B0   334 _SPI1CN	=	0x00b0
+                           0000B1   335 _OSCXCN	=	0x00b1
+                           0000B2   336 _OSCICN	=	0x00b2
+                           0000B3   337 _OSCICL	=	0x00b3
+                           0000B5   338 _PMU0CF	=	0x00b5
+                           0000B6   339 _FLSCL	=	0x00b6
+                           0000B7   340 _FLKEY	=	0x00b7
+                           0000B8   341 _IP	=	0x00b8
+                           0000B9   342 _IREF0CN	=	0x00b9
+                           0000BA   343 _ADC0AC	=	0x00ba
+                           0000BA   344 _ADC0PWR	=	0x00ba
+                           0000BB   345 _ADC0MX	=	0x00bb
+                           0000BC   346 _ADC0CF	=	0x00bc
+                           0000BD   347 _ADC0TK	=	0x00bd
+                           0000BD   348 _ADC0L	=	0x00bd
+                           0000BE   349 _ADC0H	=	0x00be
+                           0000BF   350 _P1MASK	=	0x00bf
+                           0000C0   351 _SMB0CN	=	0x00c0
+                           0000C1   352 _SMB0CF	=	0x00c1
+                           0000C2   353 _SMB0DAT	=	0x00c2
+                           0000C3   354 _ADC0GTL	=	0x00c3
+                           0000C4   355 _ADC0GTH	=	0x00c4
+                           0000C5   356 _ADC0LTL	=	0x00c5
+                           0000C6   357 _ADC0LTH	=	0x00c6
+                           0000C7   358 _P0MASK	=	0x00c7
+                           0000C8   359 _TMR2CN	=	0x00c8
+                           0000C9   360 _REG0CN	=	0x00c9
+                           0000CA   361 _TMR2RLL	=	0x00ca
+                           0000CB   362 _TMR2RLH	=	0x00cb
+                           0000CC   363 _TMR2L	=	0x00cc
+                           0000CD   364 _TMR2H	=	0x00cd
+                           0000CE   365 _PCA0CPM5	=	0x00ce
+                           0000CF   366 _P1MAT	=	0x00cf
+                           0000D0   367 _PSW	=	0x00d0
+                           0000D1   368 _REF0CN	=	0x00d1
+                           0000D2   369 _PCA0CPL5	=	0x00d2
+                           0000D3   370 _PCA0CPH5	=	0x00d3
+                           0000D4   371 _P0SKIP	=	0x00d4
+                           0000D5   372 _P1SKIP	=	0x00d5
+                           0000D6   373 _P2SKIP	=	0x00d6
+                           0000D7   374 _P0MAT	=	0x00d7
+                           0000D8   375 _PCA0CN	=	0x00d8
+                           0000D9   376 _PCA0MD	=	0x00d9
+                           0000DA   377 _PCA0CPM0	=	0x00da
+                           0000DB   378 _PCA0CPM1	=	0x00db
+                           0000DC   379 _PCA0CPM2	=	0x00dc
+                           0000DD   380 _PCA0CPM3	=	0x00dd
+                           0000DE   381 _PCA0CPM4	=	0x00de
+                           0000DF   382 _PCA0PWM	=	0x00df
+                           0000E0   383 _ACC	=	0x00e0
+                           0000E1   384 _XBR0	=	0x00e1
+                           0000E2   385 _XBR1	=	0x00e2
+                           0000E3   386 _XBR2	=	0x00e3
+                           0000E4   387 _IT01CF	=	0x00e4
+                           0000E5   388 _FLWR	=	0x00e5
+                           0000E6   389 _EIE1	=	0x00e6
+                           0000E7   390 _EIE2	=	0x00e7
+                           0000E8   391 _ADC0CN	=	0x00e8
+                           0000E9   392 _PCA0CPL1	=	0x00e9
+                           0000EA   393 _PCA0CPH1	=	0x00ea
+                           0000EB   394 _PCA0CPL2	=	0x00eb
+                           0000EC   395 _PCA0CPH2	=	0x00ec
+                           0000ED   396 _PCA0CPL3	=	0x00ed
+                           0000EE   397 _PCA0CPH3	=	0x00ee
+                           0000EF   398 _RSTSRC	=	0x00ef
+                           0000F0   399 _B	=	0x00f0
+                           0000F1   400 _P0MDIN	=	0x00f1
+                           0000F2   401 _P1MDIN	=	0x00f2
+                           0000F3   402 _P2MDIN	=	0x00f3
+                           0000F4   403 _SMB0ADR	=	0x00f4
+                           0000F5   404 _SMB0ADM	=	0x00f5
+                           0000F6   405 _EIP1	=	0x00f6
+                           0000F7   406 _EIP2	=	0x00f7
+                           0000F8   407 _SPI0CN	=	0x00f8
+                           0000F9   408 _PCA0L	=	0x00f9
+                           0000FA   409 _PCA0H	=	0x00fa
+                           0000FB   410 _PCA0CPL0	=	0x00fb
+                           0000FC   411 _PCA0CPH0	=	0x00fc
+                           0000FD   412 _PCA0CPL4	=	0x00fd
+                           0000FE   413 _PCA0CPH4	=	0x00fe
+                           0000FF   414 _VDM0CN	=	0x00ff
+                           008382   415 _DP	=	0x8382
+                           008685   416 _TOFF	=	0x8685
+                           009392   417 _TMR3RL	=	0x9392
+                           009594   418 _TMR3	=	0x9594
+                           00BEBD   419 _ADC0	=	0xbebd
+                           00C4C3   420 _ADC0GT	=	0xc4c3
+                           00C6C5   421 _ADC0LT	=	0xc6c5
+                           00CBCA   422 _TMR2RL	=	0xcbca
+                           00CDCC   423 _TMR2	=	0xcdcc
+                           00D3D2   424 _PCA0CP5	=	0xd3d2
+                           00EAE9   425 _PCA0CP1	=	0xeae9
+                           00ECEB   426 _PCA0CP2	=	0xeceb
+                           00EEED   427 _PCA0CP3	=	0xeeed
+                           00FAF9   428 _PCA0	=	0xfaf9
+                           00FCFB   429 _PCA0CP0	=	0xfcfb
+                           00FEFD   430 _PCA0CP4	=	0xfefd
+                                    431 ;--------------------------------------------------------
+                                    432 ; special function bits
+                                    433 ;--------------------------------------------------------
+                                    434 	.area RSEG    (ABS,DATA)
+      000000                        435 	.org 0x0000
+                           00008F   436 _TF1	=	0x008f
+                           00008E   437 _TR1	=	0x008e
+                           00008D   438 _TF0	=	0x008d
+                           00008C   439 _TR0	=	0x008c
+                           00008B   440 _IE1	=	0x008b
+                           00008A   441 _IT1	=	0x008a
+                           000089   442 _IE0	=	0x0089
+                           000088   443 _IT0	=	0x0088
+                           000096   444 _CRC0SEL	=	0x0096
+                           000095   445 _CRC0INIT	=	0x0095
+                           000094   446 _CRC0VAL	=	0x0094
+                           00009F   447 _S0MODE	=	0x009f
+                           00009D   448 _MCE0	=	0x009d
+                           00009C   449 _REN0	=	0x009c
+                           00009B   450 _TB80	=	0x009b
+                           00009A   451 _RB80	=	0x009a
+                           000099   452 _TI0	=	0x0099
+                           000098   453 _RI0	=	0x0098
+                           0000AF   454 _EA	=	0x00af
+                           0000AE   455 _ESPI0	=	0x00ae
+                           0000AD   456 _ET2	=	0x00ad
+                           0000AC   457 _ES0	=	0x00ac
+                           0000AB   458 _ET1	=	0x00ab
+                           0000AA   459 _EX1	=	0x00aa
+                           0000A9   460 _ET0	=	0x00a9
+                           0000A8   461 _EX0	=	0x00a8
+                           0000B7   462 _SPIF1	=	0x00b7
+                           0000B6   463 _WCOL1	=	0x00b6
+                           0000B5   464 _MODF1	=	0x00b5
+                           0000B4   465 _RXOVRN1	=	0x00b4
+                           0000B3   466 _NSS1MD1	=	0x00b3
+                           0000B2   467 _NSS1MD0	=	0x00b2
+                           0000B1   468 _TXBMT1	=	0x00b1
+                           0000B0   469 _SPI1EN	=	0x00b0
+                           0000BE   470 _PSPI0	=	0x00be
+                           0000BD   471 _PT2	=	0x00bd
+                           0000BC   472 _PS0	=	0x00bc
+                           0000BB   473 _PT1	=	0x00bb
+                           0000BA   474 _PX1	=	0x00ba
+                           0000B9   475 _PT0	=	0x00b9
+                           0000B8   476 _PX0	=	0x00b8
+                           0000C7   477 _MASTER	=	0x00c7
+                           0000C6   478 _TXMODE	=	0x00c6
+                           0000C5   479 _STA	=	0x00c5
+                           0000C4   480 _STO	=	0x00c4
+                           0000C3   481 _ACKRQ	=	0x00c3
+                           0000C2   482 _ARBLOST	=	0x00c2
+                           0000C1   483 _ACK	=	0x00c1
+                           0000C0   484 _SI	=	0x00c0
+                           0000CF   485 _TF2H	=	0x00cf
+                           0000CE   486 _TF2L	=	0x00ce
+                           0000CD   487 _TF2LEN	=	0x00cd
+                           0000CC   488 _TF2CEN	=	0x00cc
+                           0000CB   489 _T2SPLIT	=	0x00cb
+                           0000CA   490 _TR2	=	0x00ca
+                           0000C9   491 _T2RCLK	=	0x00c9
+                           0000C8   492 _T2XCLK	=	0x00c8
+                           0000D7   493 _CY	=	0x00d7
+                           0000D6   494 _AC	=	0x00d6
+                           0000D5   495 _F0	=	0x00d5
+                           0000D4   496 _RS1	=	0x00d4
+                           0000D3   497 _RS0	=	0x00d3
+                           0000D2   498 _OV	=	0x00d2
+                           0000D1   499 _F1	=	0x00d1
+                           0000D0   500 _P	=	0x00d0
+                           0000DF   501 _CF	=	0x00df
+                           0000DE   502 _CR	=	0x00de
+                           0000DD   503 _CCF5	=	0x00dd
+                           0000DC   504 _CCF4	=	0x00dc
+                           0000DB   505 _CCF3	=	0x00db
+                           0000DA   506 _CCF2	=	0x00da
+                           0000D9   507 _CCF1	=	0x00d9
+                           0000D8   508 _CCF0	=	0x00d8
+                           0000EF   509 _AD0EN	=	0x00ef
+                           0000EE   510 _BURSTEN	=	0x00ee
+                           0000ED   511 _AD0INT	=	0x00ed
+                           0000EC   512 _AD0BUSY	=	0x00ec
+                           0000EB   513 _AD0WINT	=	0x00eb
+                           0000EA   514 _AD0CM2	=	0x00ea
+                           0000E9   515 _AD0CM1	=	0x00e9
+                           0000E8   516 _AD0CM0	=	0x00e8
+                           0000FF   517 _SPIF0	=	0x00ff
+                           0000FE   518 _WCOL0	=	0x00fe
+                           0000FD   519 _MODF0	=	0x00fd
+                           0000FC   520 _RXOVRN0	=	0x00fc
+                           0000FB   521 _NSS0MD1	=	0x00fb
+                           0000FA   522 _NSS0MD0	=	0x00fa
+                           0000F9   523 _TXBMT0	=	0x00f9
+                           0000F8   524 _SPI0EN	=	0x00f8
+                           000096   525 _LED_RED	=	0x0096
+                           000095   526 _LED_GREEN	=	0x0095
+                           000082   527 _PIN_CONFIG	=	0x0082
+                           000083   528 _PIN_ENABLE	=	0x0083
+                           000087   529 _IRQ	=	0x0087
+                           000094   530 _NSS1	=	0x0094
+                           0000A6   531 _SDN	=	0x00a6
+                                    532 ;--------------------------------------------------------
+                                    533 ; overlayable register banks
+                                    534 ;--------------------------------------------------------
+                                    535 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        536 	.ds 8
+                                    537 ;--------------------------------------------------------
+                                    538 ; internal ram data
+                                    539 ;--------------------------------------------------------
+                                    540 	.area DSEG    (DATA)
+                                    541 ;--------------------------------------------------------
+                                    542 ; overlayable items in internal ram 
+                                    543 ;--------------------------------------------------------
+                                    544 	.area	OSEG    (OVR,DATA)
+      000000                        545 _mavlink_crc_length_1_146:
+      000000                        546 	.ds 1
+      000001                        547 _mavlink_crc_tmp_2_147:
+      000001                        548 	.ds 1
+      000002                        549 _mavlink_crc_sloc0_1_0:
+      000002                        550 	.ds 2
+      000004                        551 _mavlink_crc_sloc1_1_0:
+      000004                        552 	.ds 1
+      000005                        553 _mavlink_crc_sloc2_1_0:
+      000005                        554 	.ds 1
+      000006                        555 _mavlink_crc_sloc3_1_0:
+      000006                        556 	.ds 2
+                                    557 	.area	OSEG    (OVR,DATA)
+      000000                        558 _swap_bytes_i_1_149:
+      000000                        559 	.ds 1
+      000001                        560 _swap_bytes_tmp_2_150:
+      000001                        561 	.ds 1
+                                    562 ;--------------------------------------------------------
+                                    563 ; indirectly addressable internal ram data
+                                    564 ;--------------------------------------------------------
+                                    565 	.area ISEG    (DATA)
+                                    566 ;--------------------------------------------------------
+                                    567 ; absolute internal ram data
+                                    568 ;--------------------------------------------------------
+                                    569 	.area IABS    (ABS,DATA)
+                                    570 	.area IABS    (ABS,DATA)
+                                    571 ;--------------------------------------------------------
+                                    572 ; bit data
+                                    573 ;--------------------------------------------------------
+                                    574 	.area BSEG    (BIT)
+                                    575 ;--------------------------------------------------------
+                                    576 ; paged external ram data
+                                    577 ;--------------------------------------------------------
+                                    578 	.area PSEG    (PAG,XDATA)
+      000000                        579 _seqnum:
+      000000                        580 	.ds 1
+      000001                        581 _mavlink_crc_i_1_146:
+      000001                        582 	.ds 1
+      000002                        583 _swap_bytes_PARM_2:
+      000002                        584 	.ds 1
+                                    585 ;--------------------------------------------------------
+                                    586 ; external ram data
+                                    587 ;--------------------------------------------------------
+                                    588 	.area XSEG    (XDATA)
+                                    589 ;--------------------------------------------------------
+                                    590 ; absolute external ram data
+                                    591 ;--------------------------------------------------------
+                                    592 	.area XABS    (ABS,XDATA)
+                                    593 ;--------------------------------------------------------
+                                    594 ; external initialized ram data
+                                    595 ;--------------------------------------------------------
+                                    596 	.area XISEG   (XDATA)
+                                    597 	.area HOME    (CODE)
+                                    598 	.area GSINIT0 (CODE)
+                                    599 	.area GSINIT1 (CODE)
+                                    600 	.area GSINIT2 (CODE)
+                                    601 	.area GSINIT3 (CODE)
+                                    602 	.area GSINIT4 (CODE)
+                                    603 	.area GSINIT5 (CODE)
+                                    604 	.area GSINIT  (CODE)
+                                    605 	.area GSFINAL (CODE)
+                                    606 	.area CSEG    (CODE)
+                                    607 ;--------------------------------------------------------
+                                    608 ; global & static initialisations
+                                    609 ;--------------------------------------------------------
+                                    610 	.area HOME    (CODE)
+                                    611 	.area GSINIT  (CODE)
+                                    612 	.area GSFINAL (CODE)
+                                    613 	.area GSINIT  (CODE)
+                                    614 ;--------------------------------------------------------
+                                    615 ; Home
+                                    616 ;--------------------------------------------------------
+                                    617 	.area HOME    (CODE)
+                                    618 	.area HOME    (CODE)
+                                    619 ;--------------------------------------------------------
+                                    620 ; code
+                                    621 ;--------------------------------------------------------
+                                    622 	.area CSEG    (CODE)
+                                    623 ;------------------------------------------------------------
+                                    624 ;Allocation info for local variables in function 'mavlink_crc'
+                                    625 ;------------------------------------------------------------
+                                    626 ;crc_extra                 Allocated to registers r7 
+                                    627 ;length                    Allocated with name '_mavlink_crc_length_1_146'
+                                    628 ;tmp                       Allocated with name '_mavlink_crc_tmp_2_147'
+                                    629 ;sloc0                     Allocated with name '_mavlink_crc_sloc0_1_0'
+                                    630 ;sloc1                     Allocated with name '_mavlink_crc_sloc1_1_0'
+                                    631 ;sloc2                     Allocated with name '_mavlink_crc_sloc2_1_0'
+                                    632 ;sloc3                     Allocated with name '_mavlink_crc_sloc3_1_0'
+                                    633 ;------------------------------------------------------------
+                                    634 ;	radio/mavlink.c:58: static void mavlink_crc(register uint8_t crc_extra)
+                                    635 ;	-----------------------------------------
+                                    636 ;	 function mavlink_crc
+                                    637 ;	-----------------------------------------
+      000000                        638 _mavlink_crc:
+                           000007   639 	ar7 = 0x07
+                           000006   640 	ar6 = 0x06
+                           000005   641 	ar5 = 0x05
+                           000004   642 	ar4 = 0x04
+                           000003   643 	ar3 = 0x03
+                           000002   644 	ar2 = 0x02
+                           000001   645 	ar1 = 0x01
+                           000000   646 	ar0 = 0x00
+      000000 AF 82            [24]  647 	mov	r7,dpl
+                                    648 ;	radio/mavlink.c:60: register uint8_t length = pbuf[1];
+      000002 90r00r01         [24]  649 	mov	dptr,#(_pbuf + 0x0001)
+      000005 E0               [24]  650 	movx	a,@dptr
+      000006 F5*00            [12]  651 	mov	_mavlink_crc_length_1_146,a
+                                    652 ;	radio/mavlink.c:61: __pdata uint16_t sum = 0xFFFF;
+      000008 7C FF            [12]  653 	mov	r4,#0xFF
+      00000A 7D FF            [12]  654 	mov	r5,#0xFF
+                                    655 ;	radio/mavlink.c:64: stoplen = length + 6;
+      00000C 74 06            [12]  656 	mov	a,#0x06
+      00000E 25*00            [12]  657 	add	a,_mavlink_crc_length_1_146
+                                    658 ;	radio/mavlink.c:67: pbuf[length+6] = crc_extra;
+      000010 FB               [12]  659 	mov	r3,a
+      000011 FA               [12]  660 	mov	r2,a
+      000012 24r00            [12]  661 	add	a,#_pbuf
+      000014 F5 82            [12]  662 	mov	dpl,a
+      000016 E4               [12]  663 	clr	a
+      000017 34s00            [12]  664 	addc	a,#(_pbuf >> 8)
+      000019 F5 83            [12]  665 	mov	dph,a
+      00001B EF               [12]  666 	mov	a,r7
+      00001C F0               [24]  667 	movx	@dptr,a
+                                    668 ;	radio/mavlink.c:68: stoplen++;
+      00001D 0A               [12]  669 	inc	r2
+                                    670 ;	radio/mavlink.c:71: while (i<stoplen) {
+      00001E 78r01            [12]  671 	mov	r0,#_mavlink_crc_i_1_146
+      000020 74 01            [12]  672 	mov	a,#0x01
+      000022 F2               [24]  673 	movx	@r0,a
+      000023                        674 00101$:
+      000023 78r01            [12]  675 	mov	r0,#_mavlink_crc_i_1_146
+      000025 C3               [12]  676 	clr	c
+      000026 E2               [24]  677 	movx	a,@r0
+      000027 9A               [12]  678 	subb	a,r2
+      000028 50 65            [24]  679 	jnc	00103$
+                                    680 ;	radio/mavlink.c:73: tmp = pbuf[i] ^ (uint8_t)(sum&0xff);
+      00002A C0 02            [24]  681 	push	ar2
+      00002C 78r01            [12]  682 	mov	r0,#_mavlink_crc_i_1_146
+      00002E E2               [24]  683 	movx	a,@r0
+      00002F 24r00            [12]  684 	add	a,#_pbuf
+      000031 F5 82            [12]  685 	mov	dpl,a
+      000033 E4               [12]  686 	clr	a
+      000034 34s00            [12]  687 	addc	a,#(_pbuf >> 8)
+      000036 F5 83            [12]  688 	mov	dph,a
+      000038 E0               [24]  689 	movx	a,@dptr
+      000039 FB               [12]  690 	mov	r3,a
+      00003A 8C*02            [24]  691 	mov	_mavlink_crc_sloc0_1_0,r4
+      00003C 75*03 00         [24]  692 	mov	(_mavlink_crc_sloc0_1_0 + 1),#0x00
+      00003F E5*02            [12]  693 	mov	a,_mavlink_crc_sloc0_1_0
+      000041 F5*04            [12]  694 	mov	_mavlink_crc_sloc1_1_0,a
+      000043 6B               [12]  695 	xrl	a,r3
+                                    696 ;	radio/mavlink.c:74: tmp ^= (tmp<<4);
+      000044 F5*01            [12]  697 	mov	_mavlink_crc_tmp_2_147,a
+      000046 C4               [12]  698 	swap	a
+      000047 54 F0            [12]  699 	anl	a,#0xF0
+      000049 F5*05            [12]  700 	mov	_mavlink_crc_sloc2_1_0,a
+      00004B 62*01            [12]  701 	xrl	_mavlink_crc_tmp_2_147,a
+                                    702 ;	radio/mavlink.c:75: sum = (sum>>8) ^ (tmp<<8) ^ (tmp<<3) ^ (tmp>>4);
+      00004D 8D*06            [24]  703 	mov	_mavlink_crc_sloc3_1_0,r5
+      00004F 75*07 00         [24]  704 	mov	(_mavlink_crc_sloc3_1_0 + 1),#0x00
+      000052 AB*01            [24]  705 	mov	r3,_mavlink_crc_tmp_2_147
+      000054 7E 00            [12]  706 	mov	r6,#0x00
+      000056 8B 07            [24]  707 	mov	ar7,r3
+      000058 7A 00            [12]  708 	mov	r2,#0x00
+      00005A E5*06            [12]  709 	mov	a,_mavlink_crc_sloc3_1_0
+      00005C 62 02            [12]  710 	xrl	ar2,a
+      00005E E5*07            [12]  711 	mov	a,(_mavlink_crc_sloc3_1_0 + 1)
+      000060 62 07            [12]  712 	xrl	ar7,a
+      000062 EE               [12]  713 	mov	a,r6
+      000063 C4               [12]  714 	swap	a
+      000064 03               [12]  715 	rr	a
+      000065 54 F8            [12]  716 	anl	a,#0xF8
+      000067 CB               [12]  717 	xch	a,r3
+      000068 C4               [12]  718 	swap	a
+      000069 03               [12]  719 	rr	a
+      00006A CB               [12]  720 	xch	a,r3
+      00006B 6B               [12]  721 	xrl	a,r3
+      00006C CB               [12]  722 	xch	a,r3
+      00006D 54 F8            [12]  723 	anl	a,#0xF8
+      00006F CB               [12]  724 	xch	a,r3
+      000070 6B               [12]  725 	xrl	a,r3
+      000071 FE               [12]  726 	mov	r6,a
+      000072 EB               [12]  727 	mov	a,r3
+      000073 62 02            [12]  728 	xrl	ar2,a
+      000075 EE               [12]  729 	mov	a,r6
+      000076 62 07            [12]  730 	xrl	ar7,a
+      000078 E5*01            [12]  731 	mov	a,_mavlink_crc_tmp_2_147
+      00007A C4               [12]  732 	swap	a
+      00007B 54 0F            [12]  733 	anl	a,#0x0F
+      00007D FE               [12]  734 	mov	r6,a
+      00007E 7B 00            [12]  735 	mov	r3,#0x00
+      000080 6A               [12]  736 	xrl	a,r2
+      000081 FC               [12]  737 	mov	r4,a
+      000082 EB               [12]  738 	mov	a,r3
+      000083 6F               [12]  739 	xrl	a,r7
+      000084 FD               [12]  740 	mov	r5,a
+                                    741 ;	radio/mavlink.c:76: i++;
+      000085 78r01            [12]  742 	mov	r0,#_mavlink_crc_i_1_146
+      000087 E2               [24]  743 	movx	a,@r0
+      000088 24 01            [12]  744 	add	a,#0x01
+      00008A F2               [24]  745 	movx	@r0,a
+      00008B D0 02            [24]  746 	pop	ar2
+      00008D 80 94            [24]  747 	sjmp	00101$
+      00008F                        748 00103$:
+                                    749 ;	radio/mavlink.c:79: pbuf[length+6] = sum&0xFF;
+      00008F 74 06            [12]  750 	mov	a,#0x06
+      000091 25*00            [12]  751 	add	a,_mavlink_crc_length_1_146
+      000093 24r00            [12]  752 	add	a,#_pbuf
+      000095 F5 82            [12]  753 	mov	dpl,a
+      000097 E4               [12]  754 	clr	a
+      000098 34s00            [12]  755 	addc	a,#(_pbuf >> 8)
+      00009A F5 83            [12]  756 	mov	dph,a
+      00009C 8C 06            [24]  757 	mov	ar6,r4
+      00009E EE               [12]  758 	mov	a,r6
+      00009F F0               [24]  759 	movx	@dptr,a
+                                    760 ;	radio/mavlink.c:80: pbuf[length+7] = sum>>8;
+      0000A0 74 07            [12]  761 	mov	a,#0x07
+      0000A2 25*00            [12]  762 	add	a,_mavlink_crc_length_1_146
+      0000A4 24r00            [12]  763 	add	a,#_pbuf
+      0000A6 F5 82            [12]  764 	mov	dpl,a
+      0000A8 E4               [12]  765 	clr	a
+      0000A9 34s00            [12]  766 	addc	a,#(_pbuf >> 8)
+      0000AB F5 83            [12]  767 	mov	dph,a
+      0000AD 8D 04            [24]  768 	mov	ar4,r5
+      0000AF EC               [12]  769 	mov	a,r4
+      0000B0 F0               [24]  770 	movx	@dptr,a
+      0000B1 22               [24]  771 	ret
+                                    772 ;------------------------------------------------------------
+                                    773 ;Allocation info for local variables in function 'swap_bytes'
+                                    774 ;------------------------------------------------------------
+                                    775 ;i                         Allocated with name '_swap_bytes_i_1_149'
+                                    776 ;tmp                       Allocated with name '_swap_bytes_tmp_2_150'
+                                    777 ;------------------------------------------------------------
+                                    778 ;	radio/mavlink.c:93: static void swap_bytes(__pdata uint8_t ofs, __pdata uint8_t len) __nonbanked
+                                    779 ;	-----------------------------------------
+                                    780 ;	 function swap_bytes
+                                    781 ;	-----------------------------------------
+      0000B2                        782 _swap_bytes:
+      0000B2 AF 82            [24]  783 	mov	r7,dpl
+                                    784 ;	radio/mavlink.c:96: for (i=ofs; i<ofs+len; i+=2) {
+      0000B4 8F*00            [24]  785 	mov	_swap_bytes_i_1_149,r7
+      0000B6                        786 00103$:
+      0000B6 8F 04            [24]  787 	mov	ar4,r7
+      0000B8 7D 00            [12]  788 	mov	r5,#0x00
+      0000BA 78r02            [12]  789 	mov	r0,#_swap_bytes_PARM_2
+      0000BC E2               [24]  790 	movx	a,@r0
+      0000BD 7B 00            [12]  791 	mov	r3,#0x00
+      0000BF 2C               [12]  792 	add	a,r4
+      0000C0 FC               [12]  793 	mov	r4,a
+      0000C1 EB               [12]  794 	mov	a,r3
+      0000C2 3D               [12]  795 	addc	a,r5
+      0000C3 FD               [12]  796 	mov	r5,a
+      0000C4 AA*00            [24]  797 	mov	r2,_swap_bytes_i_1_149
+      0000C6 7B 00            [12]  798 	mov	r3,#0x00
+      0000C8 C3               [12]  799 	clr	c
+      0000C9 EA               [12]  800 	mov	a,r2
+      0000CA 9C               [12]  801 	subb	a,r4
+      0000CB EB               [12]  802 	mov	a,r3
+      0000CC 64 80            [12]  803 	xrl	a,#0x80
+      0000CE 8D F0            [24]  804 	mov	b,r5
+      0000D0 63 F0 80         [24]  805 	xrl	b,#0x80
+      0000D3 95 F0            [12]  806 	subb	a,b
+      0000D5 50 32            [24]  807 	jnc	00105$
+                                    808 ;	radio/mavlink.c:97: register uint8_t tmp = pbuf[i];
+      0000D7 E5*00            [12]  809 	mov	a,_swap_bytes_i_1_149
+      0000D9 24r00            [12]  810 	add	a,#_pbuf
+      0000DB FC               [12]  811 	mov	r4,a
+      0000DC E4               [12]  812 	clr	a
+      0000DD 34s00            [12]  813 	addc	a,#(_pbuf >> 8)
+      0000DF FD               [12]  814 	mov	r5,a
+      0000E0 8C 82            [24]  815 	mov	dpl,r4
+      0000E2 8D 83            [24]  816 	mov	dph,r5
+      0000E4 E0               [24]  817 	movx	a,@dptr
+      0000E5 F5*01            [12]  818 	mov	_swap_bytes_tmp_2_150,a
+                                    819 ;	radio/mavlink.c:98: pbuf[i] = pbuf[i+1];
+      0000E7 E5*00            [12]  820 	mov	a,_swap_bytes_i_1_149
+      0000E9 04               [12]  821 	inc	a
+      0000EA 24r00            [12]  822 	add	a,#_pbuf
+      0000EC FA               [12]  823 	mov	r2,a
+      0000ED E4               [12]  824 	clr	a
+      0000EE 34s00            [12]  825 	addc	a,#(_pbuf >> 8)
+      0000F0 FB               [12]  826 	mov	r3,a
+      0000F1 8A 82            [24]  827 	mov	dpl,r2
+      0000F3 8B 83            [24]  828 	mov	dph,r3
+      0000F5 E0               [24]  829 	movx	a,@dptr
+      0000F6 FE               [12]  830 	mov	r6,a
+      0000F7 8C 82            [24]  831 	mov	dpl,r4
+      0000F9 8D 83            [24]  832 	mov	dph,r5
+      0000FB F0               [24]  833 	movx	@dptr,a
+                                    834 ;	radio/mavlink.c:99: pbuf[i+1] = tmp;
+      0000FC 8A 82            [24]  835 	mov	dpl,r2
+      0000FE 8B 83            [24]  836 	mov	dph,r3
+      000100 E5*01            [12]  837 	mov	a,_swap_bytes_tmp_2_150
+      000102 F0               [24]  838 	movx	@dptr,a
+                                    839 ;	radio/mavlink.c:96: for (i=ofs; i<ofs+len; i+=2) {
+      000103 05*00            [12]  840 	inc	_swap_bytes_i_1_149
+      000105 05*00            [12]  841 	inc	_swap_bytes_i_1_149
+      000107 80 AD            [24]  842 	sjmp	00103$
+      000109                        843 00105$:
+      000109 22               [24]  844 	ret
+                                    845 ;------------------------------------------------------------
+                                    846 ;Allocation info for local variables in function 'MAVLink_report'
+                                    847 ;------------------------------------------------------------
+                                    848 ;m                         Allocated with name '_MAVLink_report_m_1_152'
+                                    849 ;------------------------------------------------------------
+                                    850 ;	radio/mavlink.c:104: void MAVLink_report(void)
+                                    851 ;	-----------------------------------------
+                                    852 ;	 function MAVLink_report
+                                    853 ;	-----------------------------------------
+      00010A                        854 _MAVLink_report:
+                                    855 ;	radio/mavlink.c:106: struct mavlink_RADIO_v10 *m = (struct mavlink_RADIO_v10 *)&pbuf[6];
+                                    856 ;	radio/mavlink.c:107: pbuf[0] = MAVLINK10_STX;
+      00010A 90r00r00         [24]  857 	mov	dptr,#_pbuf
+      00010D 74 FE            [12]  858 	mov	a,#0xFE
+      00010F F0               [24]  859 	movx	@dptr,a
+                                    860 ;	radio/mavlink.c:108: pbuf[1] = sizeof(struct mavlink_RADIO_v10);
+      000110 90r00r01         [24]  861 	mov	dptr,#(_pbuf + 0x0001)
+      000113 74 09            [12]  862 	mov	a,#0x09
+      000115 F0               [24]  863 	movx	@dptr,a
+                                    864 ;	radio/mavlink.c:109: pbuf[2] = seqnum++;
+      000116 78r00            [12]  865 	mov	r0,#_seqnum
+      000118 E2               [24]  866 	movx	a,@r0
+      000119 FF               [12]  867 	mov	r7,a
+      00011A 78r00            [12]  868 	mov	r0,#_seqnum
+      00011C 04               [12]  869 	inc	a
+      00011D F2               [24]  870 	movx	@r0,a
+      00011E 90r00r02         [24]  871 	mov	dptr,#(_pbuf + 0x0002)
+      000121 EF               [12]  872 	mov	a,r7
+      000122 F0               [24]  873 	movx	@dptr,a
+                                    874 ;	radio/mavlink.c:110: pbuf[3] = RADIO_SOURCE_SYSTEM;
+      000123 90r00r03         [24]  875 	mov	dptr,#(_pbuf + 0x0003)
+      000126 74 33            [12]  876 	mov	a,#0x33
+      000128 F0               [24]  877 	movx	@dptr,a
+                                    878 ;	radio/mavlink.c:111: pbuf[4] = RADIO_SOURCE_COMPONENT;
+      000129 90r00r04         [24]  879 	mov	dptr,#(_pbuf + 0x0004)
+      00012C 74 44            [12]  880 	mov	a,#0x44
+      00012E F0               [24]  881 	movx	@dptr,a
+                                    882 ;	radio/mavlink.c:112: pbuf[5] = MAVLINK_MSG_ID_RADIO;
+      00012F 90r00r05         [24]  883 	mov	dptr,#(_pbuf + 0x0005)
+      000132 74 A6            [12]  884 	mov	a,#0xA6
+      000134 F0               [24]  885 	movx	@dptr,a
+                                    886 ;	radio/mavlink.c:114: m->rxerrors	= errors.rx_errors;
+      000135 78r00            [12]  887 	mov	r0,#_errors
+      000137 E2               [24]  888 	movx	a,@r0
+      000138 FE               [12]  889 	mov	r6,a
+      000139 08               [12]  890 	inc	r0
+      00013A E2               [24]  891 	movx	a,@r0
+      00013B FF               [12]  892 	mov	r7,a
+      00013C 90r00r06         [24]  893 	mov	dptr,#(_pbuf + 0x0006)
+      00013F EE               [12]  894 	mov	a,r6
+      000140 F0               [24]  895 	movx	@dptr,a
+      000141 EF               [12]  896 	mov	a,r7
+      000142 A3               [24]  897 	inc	dptr
+      000143 F0               [24]  898 	movx	@dptr,a
+                                    899 ;	radio/mavlink.c:115: m->fixed	= errors.corrected_packets;
+      000144 78r0A            [12]  900 	mov	r0,#(_errors + 0x000a)
+      000146 E2               [24]  901 	movx	a,@r0
+      000147 FE               [12]  902 	mov	r6,a
+      000148 08               [12]  903 	inc	r0
+      000149 E2               [24]  904 	movx	a,@r0
+      00014A FF               [12]  905 	mov	r7,a
+      00014B 90r00r08         [24]  906 	mov	dptr,#(_pbuf + 0x0008)
+      00014E 75 F0 00         [24]  907 	mov	b,#0x00
+      000151 EE               [12]  908 	mov	a,r6
+      000152 12r00r00         [24]  909 	lcall	__gptrput
+      000155 A3               [24]  910 	inc	dptr
+      000156 EF               [12]  911 	mov	a,r7
+      000157 12r00r00         [24]  912 	lcall	__gptrput
+                                    913 ;	radio/mavlink.c:116: m->txbuf	= serial_read_space();
+      00015A 12r00r00         [24]  914 	lcall	_serial_read_space
+      00015D AF 82            [24]  915 	mov	r7,dpl
+      00015F 90r00r0C         [24]  916 	mov	dptr,#(_pbuf + 0x000c)
+      000162 75 F0 00         [24]  917 	mov	b,#0x00
+      000165 EF               [12]  918 	mov	a,r7
+      000166 12r00r00         [24]  919 	lcall	__gptrput
+                                    920 ;	radio/mavlink.c:121: mavlink_crc(MAVLINK_RADIO_CRC_EXTRA);
+      000169 75 82 15         [24]  921 	mov	dpl,#0x15
+      00016C 12r00r00         [24]  922 	lcall	_mavlink_crc
+                                    923 ;	radio/mavlink.c:123: if (serial_write_space() < sizeof(struct mavlink_RADIO_v10)+8) {
+      00016F 12r00r00         [24]  924 	lcall	_serial_write_space
+      000172 AE 82            [24]  925 	mov	r6,dpl
+      000174 AF 83            [24]  926 	mov	r7,dph
+      000176 C3               [12]  927 	clr	c
+      000177 EE               [12]  928 	mov	a,r6
+      000178 94 11            [12]  929 	subb	a,#0x11
+      00017A EF               [12]  930 	mov	a,r7
+      00017B 94 00            [12]  931 	subb	a,#0x00
+      00017D 50 01            [24]  932 	jnc	00102$
+                                    933 ;	radio/mavlink.c:125: return;
+      00017F 22               [24]  934 	ret
+      000180                        935 00102$:
+                                    936 ;	radio/mavlink.c:128: serial_write_buf(pbuf, sizeof(struct mavlink_RADIO_v10)+8);
+      000180 78r00            [12]  937 	mov	r0,#_serial_write_buf_PARM_2
+      000182 74 11            [12]  938 	mov	a,#0x11
+      000184 F2               [24]  939 	movx	@r0,a
+      000185 90r00r00         [24]  940 	mov	dptr,#_pbuf
+      000188 12r00r00         [24]  941 	lcall	_serial_write_buf
+                                    942 ;	radio/mavlink.c:131: pbuf[5] = MAVLINK_MSG_ID_RADIO_STATUS;
+      00018B 90r00r05         [24]  943 	mov	dptr,#(_pbuf + 0x0005)
+      00018E 74 6D            [12]  944 	mov	a,#0x6D
+      000190 F0               [24]  945 	movx	@dptr,a
+                                    946 ;	radio/mavlink.c:132: mavlink_crc(MAVLINK_RADIO_STATUS_CRC_EXTRA);
+      000191 75 82 B9         [24]  947 	mov	dpl,#0xB9
+      000194 12r00r00         [24]  948 	lcall	_mavlink_crc
+                                    949 ;	radio/mavlink.c:134: if (serial_write_space() < sizeof(struct mavlink_RADIO_v10)+8) {
+      000197 12r00r00         [24]  950 	lcall	_serial_write_space
+      00019A AE 82            [24]  951 	mov	r6,dpl
+      00019C AF 83            [24]  952 	mov	r7,dph
+      00019E C3               [12]  953 	clr	c
+      00019F EE               [12]  954 	mov	a,r6
+      0001A0 94 11            [12]  955 	subb	a,#0x11
+      0001A2 EF               [12]  956 	mov	a,r7
+      0001A3 94 00            [12]  957 	subb	a,#0x00
+      0001A5 50 01            [24]  958 	jnc	00104$
+                                    959 ;	radio/mavlink.c:136: return;
+      0001A7 22               [24]  960 	ret
+      0001A8                        961 00104$:
+                                    962 ;	radio/mavlink.c:139: serial_write_buf(pbuf, sizeof(struct mavlink_RADIO_v10)+8);
+      0001A8 78r00            [12]  963 	mov	r0,#_serial_write_buf_PARM_2
+      0001AA 74 11            [12]  964 	mov	a,#0x11
+      0001AC F2               [24]  965 	movx	@r0,a
+      0001AD 90r00r00         [24]  966 	mov	dptr,#_pbuf
+      0001B0 02r00r00         [24]  967 	ljmp	_serial_write_buf
+                                    968 	.area CSEG    (CODE)
+                                    969 	.area CONST   (CODE)
+                                    970 	.area XINIT   (CODE)
+                                    971 	.area CABS    (ABS,CODE)
